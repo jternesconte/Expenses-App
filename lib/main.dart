@@ -16,6 +16,9 @@ class ExpensesApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transactions = [
     Transaction(
       id: "t1",
@@ -39,7 +42,7 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
+        children: [
           const SizedBox(
             child: Card(
               color: Colors.blue,
@@ -51,7 +54,7 @@ class MyHomePage extends StatelessWidget {
             children: _transactions.map((tr) {
               return Card(
                 child: Row(
-                  children: <Widget>[
+                  children: [
                     Container(
                       margin: const EdgeInsets.symmetric(
                         horizontal: 15,
@@ -61,7 +64,7 @@ class MyHomePage extends StatelessWidget {
                         border: Border.all(
                           color: Colors.green,
                           width: 2,
-                        )
+                        ),
                       ),
                       padding: const EdgeInsets.all(10),
                       child: Text(
@@ -75,7 +78,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
+                      children: [
                         Text(
                           tr.title,
                           style: const TextStyle(
@@ -94,31 +97,41 @@ class MyHomePage extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList()
+            }).toList(),
           ),
           Card(
             elevation: 5,
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
-                children: <Widget>[
-                  const TextField(
-                    decoration: InputDecoration(
+                children: [
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(
                       labelText: "Title",
                     ),
                   ),
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: valueController,
+                    decoration: const InputDecoration(
                       labelText: "Price (R\$)",
                     ),                    
                   ),
-                  TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    ),
-                    onPressed: () {},
-                    child: Text("New Transaction"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        ),
+                        child: const Text("New Transaction"),
+                        onPressed: () {
+                          print(titleController.text);
+                          print(valueController.text);
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
