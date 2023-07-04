@@ -102,12 +102,12 @@ class MyHomePage extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: <Widget>[
-                  TextField(
+                  const TextField(
                     decoration: InputDecoration(
                       labelText: "Title",
                     ),
                   ),
-                  TextField(
+                  const TextField(
                     decoration: InputDecoration(
                       labelText: "Price (R\$)",
                     ),                    
