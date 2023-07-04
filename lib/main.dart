@@ -1,5 +1,6 @@
 import './models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 main() => runApp(const ExpensesApp());
 
@@ -25,7 +26,7 @@ class MyHomePage extends StatelessWidget {
     Transaction(
       id: "t2",
       title: "New Pc Ram Memory",
-      value: 179.70,
+      value: 179.7,
       date: DateTime.now(),
     ),
   ];
@@ -37,7 +38,6 @@ class MyHomePage extends StatelessWidget {
         title: const Text("Personal Expenses"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           const SizedBox(
@@ -65,7 +65,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.all(10),
                       child: Text(
-                        tr.value.toString(),
+                        "R\$ ${tr.value.toStringAsFixed(2)}",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -84,7 +84,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tr.date.toString(),
+                          DateFormat("d MMM y").format(tr.date),
                           style: const TextStyle(
                             color: Colors.grey,
                           ),
@@ -95,6 +95,34 @@ class MyHomePage extends StatelessWidget {
                 ),
               );
             }).toList()
+          ),
+          Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "Title",
+                    ),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "Price (R\$)",
+                    ),                    
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                    ),
+                    onPressed: () {},
+                    child: Text("New Transaction"),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
