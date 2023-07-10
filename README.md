@@ -1,16 +1,7 @@
-# expenses
+# Expenses
 
-A new Flutter project.
+A Flutter project to control your expenses, using a graphic that shows how much you spend on each day of the week.
 
-## Getting Started
+## How to use?
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Click on the new expense button, describe in "Title" what the expense was, and in "Price", how much was spent, then click on the "New Transaction" button, thus completing the process of adding an expense to your chart
