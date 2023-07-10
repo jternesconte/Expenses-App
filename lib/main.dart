@@ -21,13 +21,14 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Personal Expenses"),
+        backgroundColor: Colors.green,
       ),
       body: const Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
             child: Card(
-              color: Colors.blue,
+              color: Colors.green,
               elevation: 5,
               child: Text("Graphic"),
             ),
