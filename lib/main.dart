@@ -99,9 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final mediaQuery = MediaQuery.of(context);
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    final appBar = AppBar(
-        title: const Text("Personal Expenses"),
-        actions: [
+    final actions = [
           if (isLandscape)
             IconButton(
               icon: Icon(_showChart ? Icons.list : Icons.show_chart),
@@ -115,34 +113,36 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: const Icon(Icons.add),
             onPressed: () => _openTransactionFormModal(context),
           ),
-        ],
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        ];
+
+    final PreferredSizeWidget appBar = AppBar(
+        title: const Text("Personal Expenses"),
+        actions: actions,
       );
 
     final availableHeight = mediaQuery.size.height
     - appBar.preferredSize.height - mediaQuery.padding.top;
 
-    return Scaffold(
-      appBar: appBar,
-      body: SingleChildScrollView(
+    final bodyPage = SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if(isLandscape)
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     const Text("Exibir Gráfico"),
-              //     Switch(
-              //       value: _showChart,
-              //       onChanged: (value) {
-              //         setState(() {
-              //           _showChart = value;
-              //         });
-              //       },
-              //     ),
-              //   ],
-              // ),
+            // if(isLandscape)
+            //    Row(
+            //      mainAxisAlignment: MainAxisAlignment.center,
+            //      children: [
+            //        const Text("Exibir Gráfico"),
+            //        Switch.adaptive(
+            //          activeColor: Theme.of(context).colorScheme.secondary,
+            //          value: _showChart,
+            //          onChanged: (value) {
+            //            setState(() {
+            //              _showChart = value;
+            //            });
+            //          },
+            //        ),
+            //      ],
+            //    ),
             if (_showChart || !isLandscape)
               SizedBox(
                 height: availableHeight * (isLandscape ? 0.8 : 0.3),
@@ -155,7 +155,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
           ],
         ),
-      ),
+      );
+
+    return Scaffold(
+      appBar: appBar,
+      body: bodyPage,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _openTransactionFormModal(context),
